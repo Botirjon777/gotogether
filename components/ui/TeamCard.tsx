@@ -20,7 +20,7 @@ export function TeamCard({ member }: { member: TeamMember }) {
     <motion.article
       whileHover={{ y: -6 }}
       transition={{ type: "spring", stiffness: 300, damping: 22 }}
-      className="group flex flex-col items-center rounded-2xl border border-white/10 bg-slate/40 p-7 text-center transition-colors hover:border-white/20"
+      className="group flex flex-col items-center rounded-2xl border border-line bg-slate/40 p-7 text-center transition-colors hover:border-cobalt/50"
     >
       <div className="relative mb-5 size-24 rounded-full p-[3px] ring-2 ring-transparent transition-all duration-300 group-hover:ring-electric">
         {member.photo ? (

@@ -33,7 +33,7 @@ export function SocialLinks({
             target="_blank"
             rel="noopener noreferrer"
             aria-label={label}
-            className="grid size-9 place-items-center rounded-lg border border-white/10 text-ash transition-colors hover:border-electric/60 hover:text-electric"
+            className="grid size-9 place-items-center rounded-lg border border-line text-ash transition-colors hover:border-electric/60 hover:text-electric"
           >
             <Icon name={icon} size={size} />
           </a>

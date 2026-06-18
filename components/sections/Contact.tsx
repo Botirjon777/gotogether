@@ -73,7 +73,7 @@ export function Contact() {
 
   // text-base (16px) avoids iOS auto-zoom when focusing inputs on mobile.
   const field =
-    "w-full rounded-xl border border-white/10 bg-slate/40 px-4 py-3 text-base text-snow placeholder:text-ash/70 outline-none transition-colors focus:border-cobalt";
+    "w-full rounded-xl border border-line bg-slate/40 px-4 py-3 text-base text-snow placeholder:text-ash/70 outline-none transition-colors focus:border-cobalt";
 
   return (
     <section id="contact" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
@@ -115,7 +115,7 @@ export function Contact() {
             <button
               type="button"
               onClick={() => setStatus("idle")}
-              className="mt-7 inline-flex items-center gap-2 rounded-xl border border-white/15 px-5 py-3 text-sm font-medium text-snow transition-colors hover:border-electric/60 hover:text-electric"
+              className="mt-7 inline-flex items-center gap-2 rounded-xl border border-line px-5 py-3 text-sm font-medium text-snow transition-colors hover:border-electric/60 hover:text-electric"
             >
               <Icon name="arrow" size={16} />
               {t("send_again")}

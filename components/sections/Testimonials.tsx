@@ -16,7 +16,7 @@ function Card({ item }: { item: Testimonial }) {
     .toUpperCase();
 
   return (
-    <figure className="flex w-[330px] shrink-0 flex-col rounded-2xl border border-white/10 bg-slate/40 p-6 sm:w-[400px]">
+    <figure className="flex w-[330px] shrink-0 flex-col rounded-2xl border border-line bg-slate/40 p-6 sm:w-[400px]">
       <Icon name="quote" size={28} className="mb-4 text-cobalt" />
       <blockquote className="flex-1 text-sm leading-relaxed text-snow/90">
         “{item.quote}”

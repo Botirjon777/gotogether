@@ -47,7 +47,7 @@ export function Hero() {
 
       <div className="relative mx-auto w-full max-w-7xl px-5 py-28 sm:px-8 sm:py-32">
         <div className="max-w-4xl">
-          <p className="hero-eyebrow mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 px-3.5 py-1.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-electric sm:text-xs sm:tracking-[0.2em]">
+          <p className="hero-eyebrow mb-5 inline-flex items-center gap-2 rounded-full border border-line px-3.5 py-1.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-electric sm:text-xs sm:tracking-[0.2em]">
             <span className="size-1.5 rounded-full bg-electric" />
             {t("eyebrow")}
           </p>
@@ -82,7 +82,7 @@ export function Hero() {
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               href="#contact"
-              className="hero-cta inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 px-6 py-3.5 font-medium text-snow transition-colors hover:border-electric/60 hover:text-electric"
+              className="hero-cta inline-flex items-center justify-center gap-2 rounded-xl border border-line px-6 py-3.5 font-medium text-snow transition-colors hover:border-electric/60 hover:text-electric"
             >
               {t("cta_secondary")}
             </motion.a>
@@ -97,7 +97,7 @@ export function Hero() {
         <span className="font-mono text-[10px] uppercase tracking-[0.2em]">
           {t("scroll")}
         </span>
-        <span className="flex h-9 w-5 justify-center rounded-full border border-white/20 pt-1.5">
+        <span className="flex h-9 w-5 justify-center rounded-full border border-line pt-1.5">
           <motion.span
             animate={{ y: [0, 8, 0] }}
             transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}

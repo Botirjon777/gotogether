@@ -12,7 +12,7 @@ export function Footer() {
   const tNav = useTranslations("nav");
 
   return (
-    <footer className="border-t border-white/10 bg-midnight">
+    <footer className="border-t border-line bg-midnight">
       <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
         <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
           <div>
@@ -68,7 +68,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs text-ash sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-line pt-6 text-xs text-ash sm:flex-row">
           <p>
             © {site.name} 2026. {t("rights")}
           </p>

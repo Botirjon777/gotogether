@@ -28,9 +28,16 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#0A0F1E",
-  colorScheme: "dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0A0F1E" },
+    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
+  ],
+  colorScheme: "dark light",
 };
+
+// Runs before first paint so the chosen theme is applied with no flash of the
+// wrong colours. Honours an explicit choice, else the OS preference.
+const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";}document.documentElement.classList.add(t);}catch(e){document.documentElement.classList.add("dark");}})();`;
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -125,9 +132,11 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
+      suppressHydrationWarning
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
       <body>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <IntlProvider locale={locale} messages={messages}>
           {children}
         </IntlProvider>

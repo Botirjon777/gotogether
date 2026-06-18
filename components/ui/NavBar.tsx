@@ -8,6 +8,7 @@ import { useTranslations } from "@/i18n/provider";
 import { navLinks } from "@/lib/site";
 import { Icon } from "./Icons";
 import { LangSwitcher } from "./LangSwitcher";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function NavBar() {
   const t = useTranslations("nav");
@@ -27,7 +28,7 @@ export function NavBar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled ? "glass border-b border-white/10" : "border-b border-transparent"
+        scrolled ? "glass border-b border-line" : "border-b border-transparent"
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8">
@@ -63,6 +64,7 @@ export function NavBar() {
 
         <div className="hidden items-center gap-3 md:flex">
           <LangSwitcher />
+          <ThemeToggle />
           <a
             href="#contact"
             className="rounded-lg bg-cobalt px-4 py-2 text-sm font-medium text-snow transition-transform hover:scale-[1.03]"
@@ -71,17 +73,21 @@ export function NavBar() {
           </a>
         </div>
 
-        <button
-          className="md:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
-        >
-          <Icon name={open ? "close" : "menu"} size={24} />
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <LangSwitcher />
+          <ThemeToggle />
+          <button
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle menu"
+            className="grid size-9 place-items-center"
+          >
+            <Icon name={open ? "close" : "menu"} size={24} />
+          </button>
+        </div>
       </nav>
 
       {open && (
-        <div className="glass border-t border-white/10 px-5 py-4 md:hidden">
+        <div className="glass border-t border-line px-5 py-4 md:hidden">
           <div className="flex flex-col gap-3">
             {navLinks.map((link) => (
               <a
@@ -93,16 +99,13 @@ export function NavBar() {
                 {t(link.id)}
               </a>
             ))}
-            <div className="mt-2 flex items-center justify-between">
-              <LangSwitcher compact />
-              <a
-                href="#contact"
-                onClick={() => setOpen(false)}
-                className="rounded-lg bg-cobalt px-4 py-2 text-sm font-medium text-snow"
-              >
-                {t("cta")}
-              </a>
-            </div>
+            <a
+              href="#contact"
+              onClick={() => setOpen(false)}
+              className="mt-2 rounded-lg bg-cobalt px-4 py-2 text-center text-sm font-medium text-snow"
+            >
+              {t("cta")}
+            </a>
           </div>
         </div>
       )}

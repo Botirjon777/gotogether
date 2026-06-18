@@ -4,12 +4,16 @@
    GoTogether design tokens (Tailwind v4 — configured in CSS, no config file)
    ------------------------------------------------------------------------- */
 @theme {
+  /* Role-based tokens (values below are the dark theme; light theme overrides
+     them under `html.light`). midnight = page bg, slate = surface/cards,
+     snow = primary text, ash = muted text, line = hairline borders. */
   --color-midnight: #0a0f1e;
   --color-cobalt: #1a56ff;
   --color-electric: #4dffb4;
   --color-slate: #1e2740;
   --color-ash: #8892a4;
   --color-snow: #f0f4ff;
+  --color-line: rgba(255, 255, 255, 0.1);
 
   --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -29,6 +33,18 @@
 
 :root {
   color-scheme: dark;
+}
+
+/* Light theme — flip the role tokens. Applied by the no-flash script in the
+   layout, which adds `light` (or `dark`) to <html> before first paint. */
+html.light {
+  --color-midnight: #ffffff;
+  --color-slate: #dde4f0;
+  --color-snow: #0b1020;
+  --color-ash: #586079;
+  --color-electric: #0a9b6b; /* darker so it stays legible on light surfaces */
+  --color-line: rgba(11, 16, 32, 0.12);
+  color-scheme: light;
 }
 
 html {

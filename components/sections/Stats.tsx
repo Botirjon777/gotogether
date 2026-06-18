@@ -20,7 +20,7 @@ export function Stats() {
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <ScrollReveal
           stagger={0.12}
-          className="grid grid-cols-2 gap-8 rounded-3xl border border-white/10 bg-slate/30 px-6 py-12 lg:grid-cols-4"
+          className="grid grid-cols-2 gap-8 rounded-3xl border border-line bg-slate/30 px-6 py-12 lg:grid-cols-4"
         >
           {stats.map((s) => (
             <div key={s.n} className="text-center">

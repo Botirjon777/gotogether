@@ -51,7 +51,7 @@ export function LangSwitcher({ compact = false }: { compact?: boolean }) {
     <div className="relative">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-1.5 rounded-lg border border-white/10 px-3 py-2 font-mono text-xs text-snow transition-colors hover:border-cobalt/60"
+        className="flex items-center gap-1.5 rounded-lg border border-line px-3 py-2 font-mono text-xs text-snow transition-colors hover:border-cobalt/60"
         aria-haspopup="listbox"
         aria-expanded={open}
       >
@@ -64,7 +64,7 @@ export function LangSwitcher({ compact = false }: { compact?: boolean }) {
           <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
           <ul
             role="listbox"
-            className="glass absolute right-0 z-20 mt-2 w-32 overflow-hidden rounded-lg border border-white/10 py-1 shadow-xl"
+            className="glass absolute right-0 z-20 mt-2 w-32 overflow-hidden rounded-lg border border-line py-1 shadow-xl"
           >
             {locales.map((loc) => (
               <li key={loc}>
@@ -72,7 +72,7 @@ export function LangSwitcher({ compact = false }: { compact?: boolean }) {
                   role="option"
                   aria-selected={loc === active}
                   onClick={() => switchTo(loc)}
-                  className={`flex w-full items-center justify-between px-3 py-2 text-sm transition-colors hover:bg-white/5 ${
+                  className={`flex w-full items-center justify-between px-3 py-2 text-sm transition-colors hover:bg-snow/5 ${
                     loc === active ? "text-electric" : "text-snow"
                   }`}
                 >

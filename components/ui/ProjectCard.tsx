@@ -18,7 +18,7 @@ export function ProjectCard({
     <motion.article
       whileHover={{ y: -8 }}
       transition={{ type: "spring", stiffness: 280, damping: 22 }}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-slate/40 transition-colors hover:border-cobalt hover:shadow-[0_0_40px_-12px] hover:shadow-cobalt/60"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-slate/40 transition-colors hover:border-cobalt hover:shadow-[0_0_40px_-12px] hover:shadow-cobalt/60"
     >
       <div className="flex flex-1 flex-col p-6">
         <h3 className="mb-1.5 font-display text-xl font-semibold">{project.name}</h3>
@@ -28,7 +28,7 @@ export function ProjectCard({
           {project.stack.map((tech) => (
             <span
               key={tech}
-              className="rounded-md border border-white/10 px-2 py-0.5 font-mono text-xs text-ash"
+              className="rounded-md border border-line px-2 py-0.5 font-mono text-xs text-ash"
             >
               {tech}
             </span>
