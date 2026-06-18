@@ -15,8 +15,8 @@ export default function HomePage() {
       <main>
         <Hero />
         <Services />
-        <Showcases />
         <Team />
+        <Showcases />
         <Stats />
         <Testimonials />
         <Contact />
