@@ -18,8 +18,10 @@ export const team: TeamMember[] = [
     role: "Founder & Full-stack Engineer",
     photo: "/team/ramziddin-rustamov.jpg",
     bio: "Turns ambitious ideas into shipped products across web and AI.",
-    // TODO: add Ramziddin's real social links.
-    links: {},
+    links: {
+      linkedin: "https://www.linkedin.com/in/ramziddin-rustamov/",
+      telegram: "https://t.me/ramziddin_rustam",
+    },
   },
   {
     name: "Botirjon Shokirov",
