@@ -44,7 +44,13 @@
     "title": "Products we have shipped",
     "subtitle": "A few of the projects we are proud of.",
     "live": "Live site",
-    "code": "Source"
+    "code": "Source",
+    "desc_art_lavka": "E-commerce platform for exclusive designer t-shirts in Uzbekistan, with real-time Telegram order integration.",
+    "desc_ketamiz_web": "Intercity ride-sharing platform connecting travellers across Uzbekistan with affordable trips.",
+    "desc_dadi": "Site for a marketing agency & video studio — bold ideas and professional video production.",
+    "desc_ketamiz_mobile": "Cross-platform mobile app for intercity ride-sharing, available for iOS and Android.",
+    "desc_fajka": "Website and digital menu for a modern bar & lounge, built for a fast, immersive experience.",
+    "desc_fergana_hotel": "Booking and presentation website for a hotel in Fergana, Uzbekistan."
   },
   "team": {
     "eyebrow": "The people",

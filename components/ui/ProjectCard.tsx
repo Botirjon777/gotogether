@@ -7,10 +7,12 @@ import { Icon } from "./Icons";
 
 export function ProjectCard({
   project,
+  description,
   liveLabel,
   codeLabel,
 }: {
   project: Project;
+  description: string;
   liveLabel: string;
   codeLabel: string;
 }) {
@@ -22,7 +24,7 @@ export function ProjectCard({
     >
       <div className="flex flex-1 flex-col p-6">
         <h3 className="mb-1.5 font-display text-xl font-semibold">{project.name}</h3>
-        <p className="mb-4 text-sm leading-relaxed text-ash">{project.description}</p>
+        <p className="mb-4 text-sm leading-relaxed text-ash">{description}</p>
 
         <div className="mb-5 flex flex-wrap gap-2">
           {project.stack.map((tech) => (

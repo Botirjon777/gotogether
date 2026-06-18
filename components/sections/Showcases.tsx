@@ -29,6 +29,7 @@ export function Showcases() {
           <ProjectCard
             key={project.name}
             project={project}
+            description={t(`desc_${project.slug}`)}
             liveLabel={t("live")}
             codeLabel={t("code")}
           />

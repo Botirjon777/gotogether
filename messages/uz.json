@@ -44,7 +44,13 @@
     "title": "Biz yaratgan mahsulotlar",
     "subtitle": "Faxrlanadigan ba’zi loyihalarimiz.",
     "live": "Sayt",
-    "code": "Kod"
+    "code": "Kod",
+    "desc_art_lavka": "O‘zbekistondagi eksklyuziv dizayner futbolkalar uchun elektron tijorat platformasi, Telegram orqali real vaqtli buyurtma integratsiyasi bilan.",
+    "desc_ketamiz_web": "O‘zbekiston bo‘ylab sayohatchilarni hamyonbop sayohatlar bilan bog‘laydigan shaharlararo birga sayohat platformasi.",
+    "desc_dadi": "Marketing agentligi va video studiya uchun sayt — dadil g‘oyalar va professional video ishlab chiqarish.",
+    "desc_ketamiz_mobile": "Shaharlararo birga sayohat uchun iOS va Android’da mavjud krossplatforma mobil ilova.",
+    "desc_fajka": "Zamonaviy bar va lounge uchun veb-sayt va raqamli menyu — tez va jonli tajriba uchun yaratilgan.",
+    "desc_fergana_hotel": "Farg‘ona, O‘zbekistondagi mehmonxona uchun bron qilish va taqdimot sayti."
   },
   "team": {
     "eyebrow": "Jamoa",
