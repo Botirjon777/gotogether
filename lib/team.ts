@@ -16,7 +16,7 @@ export const team: TeamMember[] = [
   {
     name: "Ramziddin Rustamov",
     role: "Founder & Full-stack Engineer",
-    photo: null,
+    photo: "/team/ramziddin-rustamov.jpg",
     bio: "Turns ambitious ideas into shipped products across web and AI.",
     // TODO: add Ramziddin's real social links.
     links: {},
@@ -24,7 +24,7 @@ export const team: TeamMember[] = [
   {
     name: "Botirjon Shokirov",
     role: "Software Engineer",
-    photo: null,
+    photo: "/team/botirjon-shokirov.jpg",
     bio: "Software engineer building reliable, well-crafted web and mobile products.",
     links: {
       github: "https://github.com/Botirjon777",
