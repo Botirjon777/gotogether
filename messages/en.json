@@ -69,14 +69,14 @@
     "subtitle": "Tell us about your project and we’ll get back within 24 hours.",
     "name": "Name",
     "name_ph": "Your name",
-    "email": "Email",
-    "email_ph": "you@company.com",
+    "phone": "Phone number",
+    "phone_ph": "+998 90 123 45 67",
     "message": "Message",
     "message_ph": "What are you building?",
     "send": "Send message",
     "sending": "Sending…",
     "sent": "Thanks! We’ll be in touch soon.",
-    "error": "Please fill in every field.",
+    "error": "Please enter your name, a valid phone number, and a message.",
     "or_email": "Or email us directly"
   },
   "footer": {

@@ -2,7 +2,7 @@
 
 export type ContactInput = {
   name: string;
-  email: string;
+  phone: string;
   message: string;
   /** honeypot — must stay empty; bots tend to fill it */
   company?: string;
@@ -10,7 +10,13 @@ export type ContactInput = {
 
 export type ContactResult = { ok: boolean; error?: "invalid" | "server" };
 
-const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+/** Uzbek numbers: 998 + 9 national digits (e.g. +998 90 123 45 67). */
+function normalizeUzPhone(raw: string): string | null {
+  let digits = raw.replace(/\D/g, "");
+  if (digits.startsWith("998")) digits = digits.slice(3);
+  if (!/^\d{9}$/.test(digits)) return null;
+  return `+998 ${digits.slice(0, 2)} ${digits.slice(2, 5)} ${digits.slice(5, 7)} ${digits.slice(7, 9)}`;
+}
 
 /**
  * Validates a contact submission and forwards it to the GoTogether Telegram
@@ -24,10 +30,10 @@ export async function sendContactMessage(
   if (input.company && input.company.trim() !== "") return { ok: true };
 
   const name = input.name?.trim() ?? "";
-  const email = input.email?.trim() ?? "";
   const message = input.message?.trim() ?? "";
+  const phone = normalizeUzPhone(input.phone ?? "");
 
-  if (!name || !email || !message || !EMAIL_RE.test(email)) {
+  if (!name || !message || !phone) {
     return { ok: false, error: "invalid" };
   }
 
@@ -41,7 +47,7 @@ export async function sendContactMessage(
   const text =
     `🟢 New contact request — GoTogether\n\n` +
     `👤 Name: ${name}\n` +
-    `✉️ Email: ${email}\n\n` +
+    `📞 Phone: ${phone}\n\n` +
     `💬 Message:\n${message}`;
 
   try {

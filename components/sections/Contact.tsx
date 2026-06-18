@@ -12,11 +12,32 @@ import { site } from "@/lib/site";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
+const PHONE_PREFIX = "+998 ";
+
+/** Formats any input into "+998 XX XXX XX XX" as the user types. */
+function formatUzPhone(input: string): string {
+  let digits = input.replace(/\D/g, "");
+  if (digits.startsWith("998")) digits = digits.slice(3);
+  digits = digits.slice(0, 9);
+  const groups = [
+    digits.slice(0, 2),
+    digits.slice(2, 5),
+    digits.slice(5, 7),
+    digits.slice(7, 9),
+  ].filter(Boolean);
+  return "+998" + (groups.length ? " " + groups.join(" ") : " ");
+}
+
+/** True when the phone holds a complete Uzbek number (9 national digits). */
+function isValidUzPhone(value: string): boolean {
+  return /^998\d{9}$/.test(value.replace(/\D/g, ""));
+}
+
 export function Contact() {
   const t = useTranslations("contact");
   const root = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<Status>("idle");
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", phone: PHONE_PREFIX, message: "" });
   // honeypot — real users never see or fill this
   const [company, setCompany] = useState("");
 
@@ -36,7 +57,7 @@ export function Contact() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.name || !form.email || !form.message) {
+    if (!form.name.trim() || !form.message.trim() || !isValidUzPhone(form.phone)) {
       setStatus("error");
       return;
     }
@@ -44,7 +65,7 @@ export function Contact() {
     const res = await sendContactMessage({ ...form, company });
     if (res.ok) {
       setStatus("sent");
-      setForm({ name: "", email: "", message: "" });
+      setForm({ name: "", phone: PHONE_PREFIX, message: "" });
     } else {
       setStatus("error");
     }
@@ -106,12 +127,16 @@ export function Contact() {
             />
           </div>
           <div className="contact-field">
-            <label className="mb-1.5 block text-sm text-ash">{t("email")}</label>
+            <label className="mb-1.5 block text-sm text-ash">{t("phone")}</label>
             <input
-              type="email"
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              placeholder={t("email_ph")}
+              type="tel"
+              inputMode="tel"
+              value={form.phone}
+              onChange={(e) =>
+                setForm({ ...form, phone: formatUzPhone(e.target.value) })
+              }
+              placeholder={t("phone_ph")}
+              maxLength={17}
               className={field}
             />
           </div>

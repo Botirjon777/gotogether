@@ -69,14 +69,14 @@
     "subtitle": "Loyihangiz haqida yozing — 24 soat ichida javob beramiz.",
     "name": "Ism",
     "name_ph": "Ismingiz",
-    "email": "Email",
-    "email_ph": "siz@kompaniya.com",
+    "phone": "Telefon raqami",
+    "phone_ph": "+998 90 123 45 67",
     "message": "Xabar",
     "message_ph": "Nima qurmoqchisiz?",
     "send": "Xabar yuborish",
     "sending": "Yuborilmoqda…",
     "sent": "Rahmat! Tez orada bog‘lanamiz.",
-    "error": "Iltimos, barcha maydonlarni to‘ldiring.",
+    "error": "Iltimos, ism, to‘g‘ri telefon raqami va xabar kiriting.",
     "or_email": "Yoki to‘g‘ridan-to‘g‘ri yozing"
   },
   "footer": {
