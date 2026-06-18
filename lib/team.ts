@@ -12,34 +12,25 @@ export type TeamMember = {
   };
 };
 
-// Placeholder data — replace with real members (see Brief §8.1).
 export const team: TeamMember[] = [
   {
     name: "Ramziddin Rustamov",
     role: "Founder & Full-stack Engineer",
     photo: null,
     bio: "Turns ambitious ideas into shipped products across web and AI.",
-    links: { github: "https://github.com", linkedin: "https://linkedin.com", telegram: "https://t.me" },
+    // TODO: add Ramziddin's real social links.
+    links: {},
   },
   {
-    name: "Aziza Karimova",
-    role: "Lead Product Designer",
+    name: "Botirjon Shokirov",
+    role: "Software Engineer",
     photo: null,
-    bio: "Designs clean, human interfaces that make complex things feel simple.",
-    links: { linkedin: "https://linkedin.com", instagram: "https://instagram.com" },
-  },
-  {
-    name: "Bobur Aliyev",
-    role: "Mobile Engineer",
-    photo: null,
-    bio: "Crafts buttery-smooth Flutter apps for iOS and Android.",
-    links: { github: "https://github.com", telegram: "https://t.me" },
-  },
-  {
-    name: "Dilnoza Yusupova",
-    role: "Backend & DevOps",
-    photo: null,
-    bio: "Keeps services fast, observable, and always online.",
-    links: { github: "https://github.com", linkedin: "https://linkedin.com" },
+    bio: "Software engineer building reliable, well-crafted web and mobile products.",
+    links: {
+      github: "https://github.com/Botirjon777",
+      linkedin: "https://www.linkedin.com/in/botirjon-shokirov/",
+      telegram: "https://t.me/botirjon_sh",
+      instagram: "https://www.instagram.com/_botirjonshokirov_/",
+    },
   },
 ];
