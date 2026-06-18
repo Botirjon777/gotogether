@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "title": "GoTogether — Raqamli Dasturiy Studiya | Veb, Mobil va AI",
+    "title_template": "%s · GoTogether",
+    "description": "GoTogether — raqamli dasturiy studiya. Biz veb-ilovalar, mobil ilovalar, backend va sun’iy intellekt yechimlarini g‘oyadan ishga tushirishgacha yaratamiz.",
+    "keywords": "dasturiy ta’minot, veb-dasturlash, Next.js, mobil ilovalar, Flutter, sun’iy intellekt, UI/UX dizayn, DevOps, O‘zbekiston, raqamli agentlik",
+    "og_alt": "GoTogether — odamlar sevadigan raqamli mahsulotlar"
+  },
+  "nav": {
+    "services": "Xizmatlar",
+    "work": "Ishlarimiz",
+    "team": "Jamoa",
+    "stats": "Natijalar",
+    "contact": "Aloqa",
+    "cta": "Loyiha boshlash"
+  },
+  "hero": {
+    "eyebrow": "Raqamli dasturiy studiya",
+    "tagline": "Biz odamlar sevadigan raqamli mahsulotlar yaratamiz",
+    "subtitle": "G‘oyadan ishga tushirishgacha — veb, mobil va sun’iy intellekt. Biznesingizni oldinga olib boruvchi dasturlarni loyihalashtiramiz va quramiz.",
+    "cta_primary": "Ishlarimizni ko‘ring",
+    "cta_secondary": "Bog‘lanish",
+    "scroll": "Pastga aylantiring"
+  },
+  "services": {
+    "eyebrow": "Nima qilamiz",
+    "title": "Ishga tayyor xizmatlar",
+    "subtitle": "Zamonaviy texnologiyalarda to‘liq mahsulot muhandisligi.",
+    "card1_title": "Veb-dasturlash",
+    "card1_desc": "Next.js va React’da tez va kengayuvchan veb-ilovalar.",
+    "card2_title": "Mobil ilovalar",
+    "card2_desc": "Flutter, iOS va Android’da yuqori sifatli ilovalar.",
+    "card3_title": "Backend va API",
+    "card3_desc": "Node.js va PostgreSQL’da ishonchli servislar.",
+    "card4_title": "UI/UX dizayn",
+    "card4_desc": "Figma’da tadqiqotga asoslangan dizayn va prototip.",
+    "card5_title": "AI integratsiyasi",
+    "card5_desc": "Mahsulotingizga LLM imkoniyatlari va avtomatlashtirish.",
+    "card6_title": "DevOps va bulut",
+    "card6_desc": "Docker, CI/CD va beto‘xtov ishlaydigan bulut infratuzilmasi."
+  },
+  "showcases": {
+    "eyebrow": "Tanlangan ishlar",
+    "title": "Biz yaratgan mahsulotlar",
+    "subtitle": "Faxrlanadigan ba’zi loyihalarimiz.",
+    "live": "Sayt",
+    "code": "Kod"
+  },
+  "team": {
+    "eyebrow": "Jamoa",
+    "title": "Jamoa bilan tanishing",
+    "subtitle": "Birga ishlaydigan kichik, tajribali jamoa."
+  },
+  "stats": {
+    "eyebrow": "Raqamlarda",
+    "title": "Erishgan natijalarimiz",
+    "stat1_label": "Yakunlangan loyihalar",
+    "stat2_label": "Mamnun mijozlar",
+    "stat3_label": "Davlatlar",
+    "stat4_label": "Yillik tajriba"
+  },
+  "testimonials": {
+    "eyebrow": "Iliq so‘zlar",
+    "title": "Mijozlar nima deydi"
+  },
+  "contact": {
+    "eyebrow": "Salom ayting",
+    "title": "Keling, birga nimadir quraylik",
+    "subtitle": "Loyihangiz haqida yozing — 24 soat ichida javob beramiz.",
+    "name": "Ism",
+    "name_ph": "Ismingiz",
+    "email": "Email",
+    "email_ph": "siz@kompaniya.com",
+    "message": "Xabar",
+    "message_ph": "Nima qurmoqchisiz?",
+    "send": "Xabar yuborish",
+    "sending": "Yuborilmoqda…",
+    "sent": "Rahmat! Tez orada bog‘lanamiz.",
+    "error": "Iltimos, barcha maydonlarni to‘ldiring.",
+    "or_email": "Yoki to‘g‘ridan-to‘g‘ri yozing"
+  },
+  "footer": {
+    "tagline": "Biz raqamli mahsulotlarni — birga quramiz.",
+    "nav_title": "Bo‘limlar",
+    "social_title": "Kuzating",
+    "lang_title": "Til",
+    "rights": "Barcha huquqlar himoyalangan."
+  }
+}

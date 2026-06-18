@@ -1,0 +1,111 @@
+"use client";
+
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+
+import { useTranslations } from "@/i18n/provider";
+import { navLinks } from "@/lib/site";
+import { Icon } from "./Icons";
+import { LangSwitcher } from "./LangSwitcher";
+
+export function NavBar() {
+  const t = useTranslations("nav");
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <motion.header
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        scrolled ? "glass border-b border-white/10" : "border-b border-transparent"
+      }`}
+    >
+      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8">
+        <a
+          href="#top"
+          className="flex items-center gap-2.5 font-display text-lg font-bold tracking-tight"
+          aria-label="GoTogether — home"
+        >
+          <Image
+            src="/logo-mark.png"
+            alt="GoTogether"
+            width={76}
+            height={28}
+            priority
+            className="h-7 w-auto"
+          />
+          <span>
+            Go<span className="text-electric">Together</span>
+          </span>
+        </a>
+
+        <div className="hidden items-center gap-8 md:flex">
+          {navLinks.map((link) => (
+            <a
+              key={link.id}
+              href={link.href}
+              className="text-sm text-ash transition-colors hover:text-snow"
+            >
+              {t(link.id)}
+            </a>
+          ))}
+        </div>
+
+        <div className="hidden items-center gap-3 md:flex">
+          <LangSwitcher />
+          <a
+            href="#contact"
+            className="rounded-lg bg-cobalt px-4 py-2 text-sm font-medium text-snow transition-transform hover:scale-[1.03]"
+          >
+            {t("cta")}
+          </a>
+        </div>
+
+        <button
+          className="md:hidden"
+          onClick={() => setOpen((v) => !v)}
+          aria-label="Toggle menu"
+        >
+          <Icon name={open ? "close" : "menu"} size={24} />
+        </button>
+      </nav>
+
+      {open && (
+        <div className="glass border-t border-white/10 px-5 py-4 md:hidden">
+          <div className="flex flex-col gap-3">
+            {navLinks.map((link) => (
+              <a
+                key={link.id}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="text-base text-snow"
+              >
+                {t(link.id)}
+              </a>
+            ))}
+            <div className="mt-2 flex items-center justify-between">
+              <LangSwitcher compact />
+              <a
+                href="#contact"
+                onClick={() => setOpen(false)}
+                className="rounded-lg bg-cobalt px-4 py-2 text-sm font-medium text-snow"
+              >
+                {t("cta")}
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+    </motion.header>
+  );
+}

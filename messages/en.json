@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "title": "GoTogether — Digital Software Studio | Web, Mobile & AI",
+    "title_template": "%s · GoTogether",
+    "description": "GoTogether is a digital software studio. We design and build web apps, mobile apps, backends, and AI integrations — from idea to launch.",
+    "keywords": "software development, web development, Next.js, mobile apps, Flutter, AI integration, UI/UX design, DevOps, Uzbekistan, digital agency",
+    "og_alt": "GoTogether — we build digital products people love"
+  },
+  "nav": {
+    "services": "Services",
+    "work": "Our Work",
+    "team": "Team",
+    "stats": "Impact",
+    "contact": "Contact",
+    "cta": "Start a project"
+  },
+  "hero": {
+    "eyebrow": "Digital software studio",
+    "tagline": "We build digital products people love",
+    "subtitle": "From idea to launch — web, mobile, and AI. We design and engineer software that moves your business forward.",
+    "cta_primary": "See Our Work",
+    "cta_secondary": "Get in Touch",
+    "scroll": "Scroll to explore"
+  },
+  "services": {
+    "eyebrow": "What we do",
+    "title": "Services built to ship",
+    "subtitle": "End-to-end product engineering across the modern stack.",
+    "card1_title": "Web Development",
+    "card1_desc": "Fast, scalable web apps with Next.js and React.",
+    "card2_title": "Mobile Apps",
+    "card2_desc": "Native-quality apps with Flutter, iOS and Android.",
+    "card3_title": "Backend & APIs",
+    "card3_desc": "Robust services with Node.js and PostgreSQL.",
+    "card4_title": "UI/UX Design",
+    "card4_desc": "Research-driven design and prototyping in Figma.",
+    "card5_title": "AI Integration",
+    "card5_desc": "LLM features and automation wired into your product.",
+    "card6_title": "DevOps & Cloud",
+    "card6_desc": "Docker, CI/CD and cloud infra that just works."
+  },
+  "showcases": {
+    "eyebrow": "Selected work",
+    "title": "Products we have shipped",
+    "subtitle": "A few of the projects we are proud of.",
+    "live": "Live site",
+    "code": "Source"
+  },
+  "team": {
+    "eyebrow": "The people",
+    "title": "Meet the team",
+    "subtitle": "A small, senior crew that ships together."
+  },
+  "stats": {
+    "eyebrow": "By the numbers",
+    "title": "Impact we have delivered",
+    "stat1_label": "Projects Delivered",
+    "stat2_label": "Happy Clients",
+    "stat3_label": "Countries",
+    "stat4_label": "Years of Experience"
+  },
+  "testimonials": {
+    "eyebrow": "Kind words",
+    "title": "What clients say"
+  },
+  "contact": {
+    "eyebrow": "Say hello",
+    "title": "Let’s build something together",
+    "subtitle": "Tell us about your project and we’ll get back within 24 hours.",
+    "name": "Name",
+    "name_ph": "Your name",
+    "email": "Email",
+    "email_ph": "you@company.com",
+    "message": "Message",
+    "message_ph": "What are you building?",
+    "send": "Send message",
+    "sending": "Sending…",
+    "sent": "Thanks! We’ll be in touch soon.",
+    "error": "Please fill in every field.",
+    "or_email": "Or email us directly"
+  },
+  "footer": {
+    "tagline": "We build digital products — together.",
+    "nav_title": "Navigate",
+    "social_title": "Follow",
+    "lang_title": "Language",
+    "rights": "All rights reserved."
+  }
+}
