@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 
+import { sendContactMessage } from "@/app/actions/contact";
 import { Icon } from "@/components/ui/Icons";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 import { useTranslations } from "@/i18n/provider";
@@ -16,6 +17,8 @@ export function Contact() {
   const root = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<Status>("idle");
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  // honeypot — real users never see or fill this
+  const [company, setCompany] = useState("");
 
   useGSAP(
     () => {
@@ -31,18 +34,20 @@ export function Contact() {
     { scope: root },
   );
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) {
       setStatus("error");
       return;
     }
     setStatus("sending");
-    // No backend wired yet — simulate a send so the UX is complete.
-    setTimeout(() => {
+    const res = await sendContactMessage({ ...form, company });
+    if (res.ok) {
       setStatus("sent");
       setForm({ name: "", email: "", message: "" });
-    }, 900);
+    } else {
+      setStatus("error");
+    }
   }
 
   const field =
@@ -79,6 +84,17 @@ export function Contact() {
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
+          {/* Honeypot: hidden from users, catches naive bots. */}
+          <input
+            type="text"
+            name="company"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            className="absolute left-[-9999px] h-0 w-0 opacity-0"
+          />
           <div className="contact-field">
             <label className="mb-1.5 block text-sm text-ash">{t("name")}</label>
             <input
