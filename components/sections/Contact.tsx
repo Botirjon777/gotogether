@@ -71,8 +71,9 @@ export function Contact() {
     }
   }
 
+  // text-base (16px) avoids iOS auto-zoom when focusing inputs on mobile.
   const field =
-    "w-full rounded-xl border border-white/10 bg-slate/40 px-4 py-3 text-sm text-snow placeholder:text-ash/70 outline-none transition-colors focus:border-cobalt";
+    "w-full rounded-xl border border-white/10 bg-slate/40 px-4 py-3 text-base text-snow placeholder:text-ash/70 outline-none transition-colors focus:border-cobalt";
 
   return (
     <section id="contact" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
@@ -81,7 +82,7 @@ export function Contact() {
           <p className="contact-field mb-3 font-mono text-xs uppercase tracking-[0.2em] text-electric">
             {t("eyebrow")}
           </p>
-          <h2 className="contact-field font-display text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+          <h2 className="contact-field text-fluid-title font-display font-bold tracking-tight">
             {t("title")}
           </h2>
           <p className="contact-field mt-4 max-w-md text-base text-ash sm:text-lg">

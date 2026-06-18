@@ -33,6 +33,11 @@
 
 html {
   scroll-behavior: smooth;
+  /* Offset anchor jumps so sections don't hide under the fixed navbar. */
+  scroll-padding-top: 4.5rem;
+  /* Stop iOS/Android from auto-resizing text on orientation change. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -48,6 +53,14 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Visible focus ring for keyboard users (mouse clicks stay clean). */
+:focus-visible {
+  outline: 2px solid var(--color-electric);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 ::selection {
@@ -89,6 +102,16 @@ body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+}
+
+/* Fluid type — scales smoothly between phone and desktop, no breakpoint jumps. */
+@utility text-fluid-hero {
+  font-size: clamp(2.25rem, 7.5vw, 4.5rem);
+  line-height: 1.05;
+}
+@utility text-fluid-title {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  line-height: 1.1;
 }
 
 .hide-scrollbar {

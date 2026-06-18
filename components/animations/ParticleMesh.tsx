@@ -19,6 +19,10 @@ export function ParticleMesh({ className }: { className?: string }) {
 
   useEffect(() => {
     if (prefersReducedMotion()) return;
+    // Honour data-saver mode — skip the animation entirely.
+    const conn = (navigator as Navigator & { connection?: { saveData?: boolean } })
+      .connection;
+    if (conn?.saveData) return;
 
     const canvas: HTMLCanvasElement | null = canvasRef.current;
     if (!canvas) return;
@@ -28,26 +32,33 @@ export function ParticleMesh({ className }: { className?: string }) {
     const cv: HTMLCanvasElement = canvas;
     const ctx: CanvasRenderingContext2D = context;
 
+    const isMobile = window.matchMedia("(max-width: 640px)").matches;
+
     let width = 0;
     let height = 0;
     let dpr = 1;
     let particles: Particle[] = [];
     const mouse = { x: -9999, y: -9999 };
     let raf = 0;
+    let visible = true;
 
-    const LINK_DIST = 130;
+    const LINK_DIST = isMobile ? 100 : 130;
     const MOUSE_DIST = 170;
 
     function build() {
       const rect = cv.getBoundingClientRect();
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      // Cap DPR lower on phones to cut fill cost; 2 is plenty on desktop.
+      dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
       width = rect.width;
       height = rect.height;
       cv.width = Math.floor(width * dpr);
       cv.height = Math.floor(height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const density = Math.min(120, Math.floor((width * height) / 11000));
+      // Fewer particles on small screens (O(n²) link cost dominates).
+      const divisor = isMobile ? 22000 : 11000;
+      const cap = isMobile ? 45 : 120;
+      const density = Math.min(cap, Math.floor((width * height) / divisor));
       particles = Array.from({ length: density }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
@@ -124,12 +135,33 @@ export function ParticleMesh({ className }: { className?: string }) {
 
     const resizeObserver = new ResizeObserver(build);
     resizeObserver.observe(cv);
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseout", onLeave);
+
+    // Pause the loop when the hero scrolls out of view (saves CPU/battery).
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !visible) {
+          visible = true;
+          raf = requestAnimationFrame(step);
+        } else if (!entry.isIntersecting && visible) {
+          visible = false;
+          cancelAnimationFrame(raf);
+        }
+      },
+      { threshold: 0 },
+    );
+    io.observe(cv);
+
+    // Touch devices have no hover; only wire mouse listeners on pointers.
+    const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
+    if (hasFinePointer) {
+      window.addEventListener("mousemove", onMove);
+      window.addEventListener("mouseout", onLeave);
+    }
 
     return () => {
       cancelAnimationFrame(raf);
       resizeObserver.disconnect();
+      io.disconnect();
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseout", onLeave);
     };
