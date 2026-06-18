@@ -104,8 +104,25 @@ export function Contact() {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
-          {/* Honeypot: hidden from users, catches naive bots. */}
+        {status === "sent" ? (
+          <div className="flex flex-col items-center justify-center rounded-2xl border border-electric/30 bg-slate/40 p-10 text-center">
+            <span className="mb-5 grid size-16 place-items-center rounded-full bg-electric/15 text-electric">
+              <Icon name="check" size={32} />
+            </span>
+            <h3 className="font-display text-2xl font-semibold">{t("sent_title")}</h3>
+            <p className="mt-2 max-w-xs text-sm text-ash">{t("sent")}</p>
+            <button
+              type="button"
+              onClick={() => setStatus("idle")}
+              className="mt-7 inline-flex items-center gap-2 rounded-xl border border-white/15 px-5 py-3 text-sm font-medium text-snow transition-colors hover:border-electric/60 hover:text-electric"
+            >
+              <Icon name="arrow" size={16} />
+              {t("send_again")}
+            </button>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
+            {/* Honeypot: hidden from users, catches naive bots. */}
           <input
             type="text"
             name="company"
@@ -160,13 +177,11 @@ export function Contact() {
             {status !== "sending" && <Icon name="arrow" size={18} />}
           </button>
 
-          {status === "sent" && (
-            <p className="text-sm text-electric">{t("sent")}</p>
-          )}
-          {status === "error" && (
-            <p className="text-sm text-red-400">{t("error")}</p>
-          )}
-        </form>
+            {status === "error" && (
+              <p className="text-sm text-red-400">{t("error")}</p>
+            )}
+          </form>
+        )}
       </div>
     </section>
   );

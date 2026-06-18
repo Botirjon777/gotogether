@@ -16,7 +16,8 @@ export type IconName =
   | "quote"
   | "chevron"
   | "menu"
-  | "close";
+  | "close"
+  | "check";
 
 const base: SVGProps<SVGSVGElement> = {
   viewBox: "0 0 24 24",
@@ -99,6 +100,7 @@ const paths: Record<IconName, React.ReactNode> = {
   quote: (
     <path d="M7 7h4v6c0 2-1 3-3 4M13 7h4v6c0 2-1 3-3 4" fill="currentColor" stroke="none" />
   ),
+  check: <path d="m5 12 5 5L20 7" />,
   chevron: <path d="m6 9 6 6 6-6" />,
   menu: <path d="M3 6h18M3 12h18M3 18h18" />,
   close: <path d="M6 6 18 18M18 6 6 18" />,

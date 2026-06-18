@@ -76,6 +76,8 @@
     "send": "Send message",
     "sending": "Sending…",
     "sent": "Thanks! We’ll be in touch soon.",
+    "sent_title": "Message sent!",
+    "send_again": "Send another message",
     "error": "Please enter your name, a valid phone number, and a message.",
     "or_email": "Or email us directly"
   },
