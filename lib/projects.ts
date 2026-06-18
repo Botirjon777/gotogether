@@ -10,59 +10,63 @@ export type Project = {
   accent: "cobalt" | "electric" | "violet";
 };
 
-// Placeholder data — replace with real projects (see Brief §8.2).
+// Real GoTogether projects. Drop screenshots in /public/projects and set
+// `cover` to use them; otherwise a branded gradient cover is generated.
 export const projects: Project[] = [
   {
-    name: "Nexa Commerce",
-    description: "Headless storefront with real-time inventory and AI search.",
-    stack: ["Next.js", "PostgreSQL", "Stripe", "OpenAI"],
-    live: "https://example.com",
-    code: "https://github.com",
+    name: "Art-Lavka",
+    description:
+      "E-commerce platform for exclusive designer t-shirts in Uzbekistan, with real-time Telegram order integration.",
+    stack: ["Next.js", "MongoDB", "Three.js", "Tailwind"],
+    live: "https://artlavka.uz",
+    code: "https://github.com/Botirjon777/art-lavka-uz",
     cover: null,
     accent: "cobalt",
   },
   {
-    name: "Pulse Health",
-    description: "Telemedicine app connecting patients with doctors instantly.",
-    stack: ["Flutter", "Node.js", "WebRTC"],
-    live: "https://example.com",
-    code: "https://github.com",
+    name: "Ketamiz — Web",
+    description:
+      "Intercity ride-sharing platform connecting travellers across Uzbekistan with affordable trips.",
+    stack: ["Next.js", "Zustand", "React Query", "Framer Motion"],
+    live: "https://yashil-yol.vercel.app",
+    code: "https://github.com/Botirjon777/yashil-yol",
     cover: null,
     accent: "electric",
   },
   {
-    name: "Atlas Analytics",
-    description: "Self-serve BI dashboard turning raw events into decisions.",
-    stack: ["React", "ClickHouse", "Go"],
-    live: "https://example.com",
-    code: "https://github.com",
+    name: "Dadi.uz",
+    description:
+      "Site for a marketing agency & video studio — bold ideas and professional video production.",
+    stack: ["Next.js", "TypeScript", "Tailwind"],
+    live: "https://dadiuz.vercel.app",
+    code: "https://github.com/Botirjon777/dadi-uz",
     cover: null,
     accent: "violet",
   },
   {
-    name: "Lumen LMS",
-    description: "Adaptive learning platform with AI-graded assignments.",
-    stack: ["Next.js", "Prisma", "LangChain"],
-    live: "https://example.com",
-    code: "https://github.com",
+    name: "Ketamiz — Mobile",
+    description:
+      "Cross-platform mobile app for intercity ride-sharing, available for iOS and Android.",
+    stack: ["Flutter", "Dart", "Dio"],
+    code: "https://github.com/Botirjon777/ketamiz-mobile",
     cover: null,
     accent: "cobalt",
   },
   {
-    name: "Drift Logistics",
-    description: "Fleet routing engine that cuts delivery times by 30%.",
-    stack: ["TypeScript", "Mapbox", "Redis"],
-    live: "https://example.com",
-    code: "https://github.com",
+    name: "Fajka Bar",
+    description:
+      "Website and digital menu for a modern bar & lounge, built for a fast, immersive experience.",
+    stack: ["Next.js", "MongoDB", "Framer Motion"],
+    code: "https://github.com/Botirjon777/fajka-bar-next",
     cover: null,
     accent: "electric",
   },
   {
-    name: "Orbit CRM",
-    description: "Pipeline tool with automations and rich integrations.",
-    stack: ["React", "NestJS", "PostgreSQL"],
-    live: "https://example.com",
-    code: "https://github.com",
+    name: "Fergana Hotel",
+    description:
+      "Booking and presentation website for a hotel in Fergana, Uzbekistan.",
+    stack: ["Next.js", "Tailwind"],
+    // Repo is private and there is no public live URL yet.
     cover: null,
     accent: "violet",
   },
