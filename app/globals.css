@@ -14,6 +14,9 @@
   --color-ash: #8892a4;
   --color-snow: #f0f4ff;
   --color-line: rgba(255, 255, 255, 0.1);
+  /* Text/icons sitting on a dark or coloured surface (e.g. cobalt buttons).
+     Stays light in both themes — does NOT flip under `html.light`. */
+  --color-on-accent: #f0f4ff;
 
   --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -81,7 +84,7 @@ body {
 
 ::selection {
   background-color: var(--color-cobalt);
-  color: var(--color-snow);
+  color: var(--color-on-accent);
 }
 
 /* Custom scrollbar */

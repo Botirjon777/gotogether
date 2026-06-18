@@ -4,7 +4,7 @@ import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 
 import { IntlProvider } from "@/i18n/provider";
 import { getMessages } from "@/i18n/messages";
-import { isLocale, locales, ogLocale, type Locale } from "@/i18n/config";
+import { defaultLocale, isLocale, locales, ogLocale, type Locale } from "@/i18n/config";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { site } from "@/lib/site";
 import "../globals.css";
@@ -47,7 +47,7 @@ export function generateStaticParams() {
 function languageAlternates() {
   const languages: Record<string, string> = {};
   for (const l of locales) languages[l] = `/${l}`;
-  languages["x-default"] = "/en";
+  languages["x-default"] = `/${defaultLocale}`;
   return languages;
 }
 

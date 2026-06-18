@@ -67,7 +67,7 @@ export function NavBar() {
           <ThemeToggle />
           <a
             href="#contact"
-            className="rounded-lg bg-cobalt px-4 py-2 text-sm font-medium text-snow transition-transform hover:scale-[1.03]"
+            className="rounded-lg bg-cobalt px-4 py-2 text-sm font-medium text-on-accent transition-transform hover:scale-[1.03]"
           >
             {t("cta")}
           </a>
@@ -102,7 +102,7 @@ export function NavBar() {
             <a
               href="#contact"
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-lg bg-cobalt px-4 py-2 text-center text-sm font-medium text-snow"
+              className="mt-2 rounded-lg bg-cobalt px-4 py-2 text-center text-sm font-medium text-on-accent"
             >
               {t("cta")}
             </a>

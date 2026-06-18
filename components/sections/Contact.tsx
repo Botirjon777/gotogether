@@ -172,7 +172,7 @@ export function Contact() {
           <button
             type="submit"
             disabled={status === "sending"}
-            className="contact-field mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-cobalt px-6 py-3.5 font-medium text-snow shadow-lg shadow-cobalt/30 transition-transform hover:scale-[1.02] disabled:opacity-60"
+            className="contact-field mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-cobalt px-6 py-3.5 font-medium text-on-accent shadow-lg shadow-cobalt/30 transition-transform hover:scale-[1.02] disabled:opacity-60"
           >
             {status === "sending" ? t("sending") : t("send")}
             {status !== "sending" && <Icon name="arrow" size={18} />}

@@ -73,7 +73,7 @@ export function Hero() {
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               href="#work"
-              className="hero-cta inline-flex items-center justify-center gap-2 rounded-xl bg-cobalt px-6 py-3.5 font-medium text-snow shadow-lg shadow-cobalt/30"
+              className="hero-cta inline-flex items-center justify-center gap-2 rounded-xl bg-cobalt px-6 py-3.5 font-medium text-on-accent shadow-lg shadow-cobalt/30"
             >
               {t("cta_primary")}
               <Icon name="arrow" size={18} />

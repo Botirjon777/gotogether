@@ -36,7 +36,7 @@ export function LangSwitcher({ compact = false }: { compact?: boolean }) {
             aria-current={loc === active}
             className={`rounded-md px-2.5 py-1 font-mono text-xs transition-colors ${
               loc === active
-                ? "bg-cobalt text-snow"
+                ? "bg-cobalt text-on-accent"
                 : "text-ash hover:text-snow"
             }`}
           >
