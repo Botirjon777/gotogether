@@ -76,7 +76,9 @@
     "name": "Name",
     "name_ph": "Your name",
     "phone": "Phone number",
-    "phone_ph": "+998 90 123 45 67",
+    "phone_ph": "+1 555 123 4567",
+    "email": "Email",
+    "email_ph": "you@example.com",
     "message": "Message",
     "message_ph": "What are you building?",
     "send": "Send message",
@@ -84,7 +86,7 @@
     "sent": "Thanks! We’ll be in touch soon.",
     "sent_title": "Message sent!",
     "send_again": "Send another message",
-    "error": "Please enter your name, a valid phone number, and a message.",
+    "error": "Please enter your name, a valid phone number, a valid email, and a message.",
     "or_email": "Or email us directly"
   },
   "footer": {

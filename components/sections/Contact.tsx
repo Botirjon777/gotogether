@@ -12,32 +12,21 @@ import { site } from "@/lib/site";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
-const PHONE_PREFIX = "+998 ";
-
-/** Formats any input into "+998 XX XXX XX XX" as the user types. */
-function formatUzPhone(input: string): string {
-  let digits = input.replace(/\D/g, "");
-  if (digits.startsWith("998")) digits = digits.slice(3);
-  digits = digits.slice(0, 9);
-  const groups = [
-    digits.slice(0, 2),
-    digits.slice(2, 5),
-    digits.slice(5, 7),
-    digits.slice(7, 9),
-  ].filter(Boolean);
-  return "+998" + (groups.length ? " " + groups.join(" ") : " ");
+/** Accepts any international number: optional leading +, 7–15 digits. */
+function isValidPhone(value: string): boolean {
+  return /^\+?\d{7,15}$/.test(value.replace(/[\s()-]/g, ""));
 }
 
-/** True when the phone holds a complete Uzbek number (9 national digits). */
-function isValidUzPhone(value: string): boolean {
-  return /^998\d{9}$/.test(value.replace(/\D/g, ""));
+/** Light email check — just enough to catch obvious typos. */
+function isValidEmail(value: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 }
 
 export function Contact() {
   const t = useTranslations("contact");
   const root = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<Status>("idle");
-  const [form, setForm] = useState({ name: "", phone: PHONE_PREFIX, message: "" });
+  const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });
   // honeypot — real users never see or fill this
   const [company, setCompany] = useState("");
 
@@ -57,7 +46,12 @@ export function Contact() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.name.trim() || !form.message.trim() || !isValidUzPhone(form.phone)) {
+    if (
+      !form.name.trim() ||
+      !form.message.trim() ||
+      !isValidPhone(form.phone) ||
+      !isValidEmail(form.email)
+    ) {
       setStatus("error");
       return;
     }
@@ -65,7 +59,7 @@ export function Contact() {
     const res = await sendContactMessage({ ...form, company });
     if (res.ok) {
       setStatus("sent");
-      setForm({ name: "", phone: PHONE_PREFIX, message: "" });
+      setForm({ name: "", phone: "", email: "", message: "" });
     } else {
       setStatus("error");
     }
@@ -150,11 +144,21 @@ export function Contact() {
               type="tel"
               inputMode="tel"
               value={form.phone}
-              onChange={(e) =>
-                setForm({ ...form, phone: formatUzPhone(e.target.value) })
-              }
+              onChange={(e) => setForm({ ...form, phone: e.target.value })}
               placeholder={t("phone_ph")}
-              maxLength={17}
+              maxLength={20}
+              className={field}
+            />
+          </div>
+          <div className="contact-field">
+            <label className="mb-1.5 block text-sm text-ash">{t("email")}</label>
+            <input
+              type="email"
+              inputMode="email"
+              autoComplete="email"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              placeholder={t("email_ph")}
               className={field}
             />
           </div>

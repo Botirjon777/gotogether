@@ -3,6 +3,7 @@
 export type ContactInput = {
   name: string;
   phone: string;
+  email: string;
   message: string;
   /** honeypot — must stay empty; bots tend to fill it */
   company?: string;
@@ -10,12 +11,19 @@ export type ContactInput = {
 
 export type ContactResult = { ok: boolean; error?: "invalid" | "server" };
 
-/** Uzbek numbers: 998 + 9 national digits (e.g. +998 90 123 45 67). */
-function normalizeUzPhone(raw: string): string | null {
-  let digits = raw.replace(/\D/g, "");
-  if (digits.startsWith("998")) digits = digits.slice(3);
-  if (!/^\d{9}$/.test(digits)) return null;
-  return `+998 ${digits.slice(0, 2)} ${digits.slice(2, 5)} ${digits.slice(5, 7)} ${digits.slice(7, 9)}`;
+/** Accepts any international number: optional leading +, 7–15 digits. */
+function normalizePhone(raw: string): string | null {
+  const trimmed = raw.trim();
+  const digits = trimmed.replace(/[\s()-]/g, "");
+  if (!/^\+?\d{7,15}$/.test(digits)) return null;
+  return trimmed;
+}
+
+/** Light email check — just enough to catch obvious typos. */
+function normalizeEmail(raw: string): string | null {
+  const email = raw.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return null;
+  return email;
 }
 
 /**
@@ -31,9 +39,10 @@ export async function sendContactMessage(
 
   const name = input.name?.trim() ?? "";
   const message = input.message?.trim() ?? "";
-  const phone = normalizeUzPhone(input.phone ?? "");
+  const phone = normalizePhone(input.phone ?? "");
+  const email = normalizeEmail(input.email ?? "");
 
-  if (!name || !message || !phone) {
+  if (!name || !message || !phone || !email) {
     return { ok: false, error: "invalid" };
   }
 
@@ -47,7 +56,8 @@ export async function sendContactMessage(
   const text =
     `🟢 New contact request — GoTogether\n\n` +
     `👤 Name: ${name}\n` +
-    `📞 Phone: ${phone}\n\n` +
+    `📞 Phone: ${phone}\n` +
+    `📧 Email: ${email}\n\n` +
     `💬 Message:\n${message}`;
 
   try {

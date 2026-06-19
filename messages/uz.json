@@ -76,7 +76,9 @@
     "name": "Ism",
     "name_ph": "Ismingiz",
     "phone": "Telefon raqami",
-    "phone_ph": "+998 90 123 45 67",
+    "phone_ph": "+1 555 123 4567",
+    "email": "Email",
+    "email_ph": "you@example.com",
     "message": "Xabar",
     "message_ph": "Nima qurmoqchisiz?",
     "send": "Xabar yuborish",
@@ -84,7 +86,7 @@
     "sent": "Rahmat! Tez orada bog‘lanamiz.",
     "sent_title": "Xabar yuborildi!",
     "send_again": "Yana xabar yuborish",
-    "error": "Iltimos, ism, to‘g‘ri telefon raqami va xabar kiriting.",
+    "error": "Iltimos, ism, to‘g‘ri telefon raqami, to‘g‘ri email va xabar kiriting.",
     "or_email": "Yoki to‘g‘ridan-to‘g‘ri yozing"
   },
   "footer": {
