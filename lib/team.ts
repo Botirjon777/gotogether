@@ -35,4 +35,10 @@ export const team: TeamMember[] = [
       instagram: "https://www.instagram.com/_botirjonshokirov_/",
     },
   },
+  {
+    name: "Diyorbek Muminov",
+    slug: "diyorbek",
+    photo: "/team/diyorbek-muminov.png",
+    links: {},
+  },
 ];
