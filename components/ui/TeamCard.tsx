@@ -15,7 +15,15 @@ function initials(name: string) {
     .toUpperCase();
 }
 
-export function TeamCard({ member }: { member: TeamMember }) {
+export function TeamCard({
+  member,
+  role,
+  bio,
+}: {
+  member: TeamMember;
+  role: string;
+  bio: string;
+}) {
   return (
     <motion.article
       whileHover={{ y: -6 }}
@@ -39,8 +47,8 @@ export function TeamCard({ member }: { member: TeamMember }) {
       </div>
 
       <h3 className="font-display text-lg font-semibold">{member.name}</h3>
-      <p className="mb-3 font-mono text-xs text-cobalt">{member.role}</p>
-      <p className="mb-5 text-sm leading-relaxed text-ash">{member.bio}</p>
+      <p className="mb-3 font-mono text-xs text-cobalt">{role}</p>
+      <p className="mb-5 text-sm leading-relaxed text-ash">{bio}</p>
 
       <SocialLinks links={member.links} className="mt-auto" />
     </motion.article>

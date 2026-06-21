@@ -55,7 +55,11 @@
   "team": {
     "eyebrow": "Jamoa",
     "title": "Jamoa bilan tanishing",
-    "subtitle": "Birga ishlaydigan kichik, tajribali jamoa."
+    "subtitle": "Birga ishlaydigan kichik, tajribali jamoa.",
+    "role_ramziddin": "Asoschi va Full-stack muhandis",
+    "bio_ramziddin": "Ambitsiyali g'oyalarni veb va AI sohasida tayyor mahsulotlarga aylantiradi.",
+    "role_botirjon": "Dasturiy ta'minot muhandisi",
+    "bio_botirjon": "Ishonchli va sifatli veb va mobil mahsulotlar yaratuvchi dasturchi."
   },
   "stats": {
     "eyebrow": "Raqamlarda",

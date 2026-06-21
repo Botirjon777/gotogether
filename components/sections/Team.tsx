@@ -50,7 +50,12 @@ export function Team() {
         className="mx-auto grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2"
       >
         {team.map((member) => (
-          <TeamCard key={member.name} member={member} />
+          <TeamCard
+            key={member.name}
+            member={member}
+            role={t(`role_${member.slug}`)}
+            bio={t(`bio_${member.slug}`)}
+          />
         ))}
       </div>
     </section>

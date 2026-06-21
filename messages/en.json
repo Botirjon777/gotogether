@@ -55,7 +55,11 @@
   "team": {
     "eyebrow": "The people",
     "title": "Meet the team",
-    "subtitle": "A small, senior crew that ships together."
+    "subtitle": "A small, senior crew that ships together.",
+    "role_ramziddin": "Founder & Full-stack Engineer",
+    "bio_ramziddin": "Turns ambitious ideas into shipped products across web and AI.",
+    "role_botirjon": "Software Engineer",
+    "bio_botirjon": "Software engineer building reliable, well-crafted web and mobile products."
   },
   "stats": {
     "eyebrow": "By the numbers",

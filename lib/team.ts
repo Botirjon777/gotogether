@@ -1,9 +1,9 @@
 export type TeamMember = {
   name: string;
-  role: string;
+  /** key into the `team` namespace: role is `role_${slug}`, bio is `bio_${slug}` */
+  slug: string;
   /** image in /public/team, or null to render initials avatar */
   photo: string | null;
-  bio: string;
   links: {
     github?: string;
     linkedin?: string;
@@ -12,12 +12,13 @@ export type TeamMember = {
   };
 };
 
+// Names stay as-is (proper names); roles and bios are translated per locale
+// under `team.role_<slug>` and `team.bio_<slug>`.
 export const team: TeamMember[] = [
   {
     name: "Ramziddin Rustamov",
-    role: "Founder & Full-stack Engineer",
+    slug: "ramziddin",
     photo: "/team/ramziddin-rustamov.jpg",
-    bio: "Turns ambitious ideas into shipped products across web and AI.",
     links: {
       linkedin: "https://www.linkedin.com/in/ramziddin-rustamov/",
       telegram: "https://t.me/ramziddin_rustam",
@@ -25,9 +26,8 @@ export const team: TeamMember[] = [
   },
   {
     name: "Botirjon Shokirov",
-    role: "Software Engineer",
+    slug: "botirjon",
     photo: "/team/botirjon-shokirov.jpg",
-    bio: "Software engineer building reliable, well-crafted web and mobile products.",
     links: {
       github: "https://github.com/Botirjon777",
       linkedin: "https://www.linkedin.com/in/botirjon-shokirov/",
