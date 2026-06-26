@@ -1,11 +1,14 @@
 import type { MetadataRoute } from "next";
 
-import { locales } from "@/i18n/config";
+import { defaultLocale, locales } from "@/i18n/config";
 import { site } from "@/lib/site";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
+// Bump when the site's content meaningfully changes. A fixed date is more
+// honest to crawlers than `new Date()`, which would claim "just modified" on
+// every request.
+const lastModified = "2026-06-26";
 
+export default function sitemap(): MetadataRoute.Sitemap {
   // Per-locale hreflang alternates so search engines link the translations.
   const languages: Record<string, string> = {};
   for (const l of locales) languages[l] = `${site.url}/${l}`;
@@ -14,7 +17,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${site.url}/${locale}`,
     lastModified,
     changeFrequency: "monthly",
-    priority: locale === "en" ? 1 : 0.8,
+    // Default locale (uz) is the primary market, so it carries top priority.
+    priority: locale === defaultLocale ? 1 : 0.8,
     alternates: { languages },
   }));
 }

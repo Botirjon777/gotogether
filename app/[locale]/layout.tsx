@@ -6,6 +6,7 @@ import { IntlProvider } from "@/i18n/provider";
 import { getMessages } from "@/i18n/messages";
 import { defaultLocale, isLocale, locales, ogLocale, type Locale } from "@/i18n/config";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { Toaster } from "@/components/ui/Toaster";
 import { site } from "@/lib/site";
 import "../globals.css";
 
@@ -140,6 +141,7 @@ export default async function LocaleLayout({
         <IntlProvider locale={locale} messages={messages}>
           {children}
         </IntlProvider>
+        <Toaster />
         <JsonLd locale={locale} description={messages.meta.description} />
       </body>
     </html>

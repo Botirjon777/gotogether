@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
+import { toast } from "sonner";
 
 import { sendContactMessage } from "@/app/actions/contact";
 import { Icon } from "@/components/ui/Icons";
@@ -9,26 +10,41 @@ import { SocialLinks } from "@/components/ui/SocialLinks";
 import { useTranslations } from "@/i18n/provider";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import { site } from "@/lib/site";
+import { isValidEmail, isValidPhone } from "@/lib/validation";
 
-type Status = "idle" | "sending" | "sent" | "error";
-
-/** Accepts any international number: optional leading +, 7–15 digits. */
-function isValidPhone(value: string): boolean {
-  return /^\+?\d{7,15}$/.test(value.replace(/[\s()-]/g, ""));
-}
-
-/** Light email check — just enough to catch obvious typos. */
-function isValidEmail(value: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
-}
+type Status = "idle" | "sending" | "sent";
+type Field = "name" | "phone" | "email" | "message";
+type FieldErrors = Partial<Record<Field, string>>;
 
 export function Contact() {
   const t = useTranslations("contact");
   const root = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<Status>("idle");
   const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });
+  const [errors, setErrors] = useState<FieldErrors>({});
   // honeypot — real users never see or fill this
   const [company, setCompany] = useState("");
+
+  /** Per-field validation — returns one message per offending field. */
+  function validate(values: typeof form): FieldErrors {
+    const next: FieldErrors = {};
+    if (!values.name.trim()) next.name = t("err_name");
+    if (!isValidPhone(values.phone)) next.phone = t("err_phone");
+    if (!isValidEmail(values.email)) next.email = t("err_email");
+    if (!values.message.trim()) next.message = t("err_message");
+    return next;
+  }
+
+  /** Update a field and clear its error so the danger state lifts as they type. */
+  function update(field: Field, value: string) {
+    setForm((f) => ({ ...f, [field]: value }));
+    setErrors((prev) => {
+      if (!prev[field]) return prev;
+      const next = { ...prev };
+      delete next[field];
+      return next;
+    });
+  }
 
   useGSAP(
     () => {
@@ -46,28 +62,35 @@ export function Contact() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (
-      !form.name.trim() ||
-      !form.message.trim() ||
-      !isValidPhone(form.phone) ||
-      !isValidEmail(form.email)
-    ) {
-      setStatus("error");
+    const nextErrors = validate(form);
+    if (Object.keys(nextErrors).length > 0) {
+      setErrors(nextErrors);
+      toast.error(t("toast_invalid"));
       return;
     }
+    setErrors({});
     setStatus("sending");
     const res = await sendContactMessage({ ...form, company });
     if (res.ok) {
       setStatus("sent");
       setForm({ name: "", phone: "", email: "", message: "" });
+      toast.success(t("toast_sent"));
     } else {
-      setStatus("error");
+      setStatus("idle");
+      toast.error(t("toast_error"));
     }
   }
 
   // text-base (16px) avoids iOS auto-zoom when focusing inputs on mobile.
-  const field =
-    "w-full rounded-xl border border-line bg-slate/40 px-4 py-3 text-base text-snow placeholder:text-ash/70 outline-none transition-colors focus:border-cobalt";
+  const fieldBase =
+    "w-full rounded-xl border bg-slate/40 px-4 py-3 text-base text-snow placeholder:text-ash/70 outline-none transition-colors";
+  // Danger border + ring when a field has an error, cobalt focus otherwise.
+  const fieldClass = (hasError: boolean) =>
+    `${fieldBase} ${
+      hasError
+        ? "border-red-500 focus:border-red-500"
+        : "border-line focus:border-cobalt"
+    }`;
 
   return (
     <section id="contact" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
@@ -129,48 +152,88 @@ export function Contact() {
             className="absolute left-[-9999px] h-0 w-0 opacity-0"
           />
           <div className="contact-field">
-            <label className="mb-1.5 block text-sm text-ash">{t("name")}</label>
+            <label htmlFor="contact-name" className="mb-1.5 block text-sm text-ash">
+              {t("name")}
+            </label>
             <input
+              id="contact-name"
               type="text"
               value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              onChange={(e) => update("name", e.target.value)}
               placeholder={t("name_ph")}
-              className={field}
+              aria-invalid={Boolean(errors.name)}
+              aria-describedby={errors.name ? "contact-name-error" : undefined}
+              className={fieldClass(Boolean(errors.name))}
             />
+            {errors.name && (
+              <p id="contact-name-error" className="mt-1.5 text-sm text-red-400">
+                {errors.name}
+              </p>
+            )}
           </div>
           <div className="contact-field">
-            <label className="mb-1.5 block text-sm text-ash">{t("phone")}</label>
+            <label htmlFor="contact-phone" className="mb-1.5 block text-sm text-ash">
+              {t("phone")}
+            </label>
             <input
+              id="contact-phone"
               type="tel"
               inputMode="tel"
               value={form.phone}
-              onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              onChange={(e) => update("phone", e.target.value)}
               placeholder={t("phone_ph")}
               maxLength={20}
-              className={field}
+              aria-invalid={Boolean(errors.phone)}
+              aria-describedby={errors.phone ? "contact-phone-error" : undefined}
+              className={fieldClass(Boolean(errors.phone))}
             />
+            {errors.phone && (
+              <p id="contact-phone-error" className="mt-1.5 text-sm text-red-400">
+                {errors.phone}
+              </p>
+            )}
           </div>
           <div className="contact-field">
-            <label className="mb-1.5 block text-sm text-ash">{t("email")}</label>
+            <label htmlFor="contact-email" className="mb-1.5 block text-sm text-ash">
+              {t("email")}
+            </label>
             <input
+              id="contact-email"
               type="email"
               inputMode="email"
               autoComplete="email"
               value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              onChange={(e) => update("email", e.target.value)}
               placeholder={t("email_ph")}
-              className={field}
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? "contact-email-error" : undefined}
+              className={fieldClass(Boolean(errors.email))}
             />
+            {errors.email && (
+              <p id="contact-email-error" className="mt-1.5 text-sm text-red-400">
+                {errors.email}
+              </p>
+            )}
           </div>
           <div className="contact-field">
-            <label className="mb-1.5 block text-sm text-ash">{t("message")}</label>
+            <label htmlFor="contact-message" className="mb-1.5 block text-sm text-ash">
+              {t("message")}
+            </label>
             <textarea
+              id="contact-message"
               rows={5}
               value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
+              onChange={(e) => update("message", e.target.value)}
               placeholder={t("message_ph")}
-              className={`${field} resize-none`}
+              aria-invalid={Boolean(errors.message)}
+              aria-describedby={errors.message ? "contact-message-error" : undefined}
+              className={`${fieldClass(Boolean(errors.message))} resize-none`}
             />
+            {errors.message && (
+              <p id="contact-message-error" className="mt-1.5 text-sm text-red-400">
+                {errors.message}
+              </p>
+            )}
           </div>
 
           <button
@@ -181,10 +244,6 @@ export function Contact() {
             {status === "sending" ? t("sending") : t("send")}
             {status !== "sending" && <Icon name="arrow" size={18} />}
           </button>
-
-            {status === "error" && (
-              <p className="text-sm text-red-400">{t("error")}</p>
-            )}
           </form>
         )}
       </div>
