@@ -35,8 +35,12 @@ export function TeamCard({
           <Image
             src={member.photo}
             alt={member.name}
-            width={96}
-            height={96}
+            // Rendered at 96px but the source is requested at 2× (192px) and
+            // higher quality so the avatar stays crisp on retina screens.
+            width={192}
+            height={192}
+            quality={90}
+            sizes="96px"
             className="size-full rounded-full object-cover"
           />
         ) : (
