@@ -93,6 +93,13 @@
     "sent_title": "Message sent!",
     "send_again": "Send another message",
     "error": "Please enter your name, a valid phone number, a valid email, and a message.",
+    "err_name": "Please enter your name.",
+    "err_phone": "Please enter a valid phone number.",
+    "err_email": "Please enter a valid email address.",
+    "err_message": "Please enter a message.",
+    "toast_sent": "Message sent! We’ll be in touch soon.",
+    "toast_error": "Something went wrong. Please try again.",
+    "toast_invalid": "Please fix the highlighted fields.",
     "or_email": "Or email us directly"
   },
   "footer": {

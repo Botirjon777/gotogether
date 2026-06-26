@@ -37,6 +37,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# claude code — local settings + per-tool skill symlinks (regenerate via `npx skills install`)
+.claude/settings.local.json
+.claude/skills/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

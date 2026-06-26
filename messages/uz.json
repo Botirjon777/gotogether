@@ -93,6 +93,13 @@
     "sent_title": "Xabar yuborildi!",
     "send_again": "Yana xabar yuborish",
     "error": "Iltimos, ism, to‘g‘ri telefon raqami, to‘g‘ri email va xabar kiriting.",
+    "err_name": "Iltimos, ismingizni kiriting.",
+    "err_phone": "To‘g‘ri telefon raqamini kiriting.",
+    "err_email": "To‘g‘ri email manzilini kiriting.",
+    "err_message": "Iltimos, xabar kiriting.",
+    "toast_sent": "Xabar yuborildi! Tez orada Bog‘lanamiz.",
+    "toast_error": "Xatolik yuz berdi. Qaytadan urinib ko‘ring.",
+    "toast_invalid": "Iltimos, belgilangan maydonlarni to‘g‘rilang.",
     "or_email": "Yoki to‘g‘ridan-to‘g‘ri yozing"
   },
   "footer": {

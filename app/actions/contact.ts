@@ -1,5 +1,7 @@
 "use server";
 
+import { isValidEmail, isValidPhone } from "@/lib/validation";
+
 export type ContactInput = {
   name: string;
   phone: string;
@@ -11,19 +13,16 @@ export type ContactInput = {
 
 export type ContactResult = { ok: boolean; error?: "invalid" | "server" };
 
-/** Accepts any international number: optional leading +, 7–15 digits. */
+/** Trims and returns the phone, or null when it fails shared validation. */
 function normalizePhone(raw: string): string | null {
   const trimmed = raw.trim();
-  const digits = trimmed.replace(/[\s()-]/g, "");
-  if (!/^\+?\d{7,15}$/.test(digits)) return null;
-  return trimmed;
+  return isValidPhone(trimmed) ? trimmed : null;
 }
 
-/** Light email check — just enough to catch obvious typos. */
+/** Trims and returns the email, or null when it fails shared validation. */
 function normalizeEmail(raw: string): string | null {
   const email = raw.trim();
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return null;
-  return email;
+  return isValidEmail(email) ? email : null;
 }
 
 /**
