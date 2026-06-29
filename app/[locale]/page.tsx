@@ -7,10 +7,12 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { Contact } from "@/components/sections/Contact";
 import { NavBar } from "@/components/ui/NavBar";
 import { Footer } from "@/components/ui/Footer";
+import { PlanetsBackground } from "@/components/animations/PlanetsBackground";
 
 export default function HomePage() {
   return (
     <>
+      <PlanetsBackground />
       <NavBar />
       <main>
         <Hero />
