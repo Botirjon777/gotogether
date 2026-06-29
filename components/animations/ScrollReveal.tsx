@@ -62,9 +62,17 @@ export function ScrollReveal({
     { scope: ref },
   );
 
+  // `as` is polymorphic, so narrow it to a component that accepts the props we
+  // actually pass — otherwise TS (with @types/react 19) infers `never` props.
+  const Element = Tag as React.FC<{
+    ref?: React.Ref<HTMLDivElement>;
+    className?: string;
+    children?: React.ReactNode;
+  }>;
+
   return (
-    <Tag ref={ref} className={className}>
+    <Element ref={ref} className={className}>
       {children}
-    </Tag>
+    </Element>
   );
 }
